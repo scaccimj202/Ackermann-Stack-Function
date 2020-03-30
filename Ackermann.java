@@ -20,7 +20,6 @@
  * @course CIS 303 Algorithm Analysis and Design
  * Assignment 4b
 */
-import java.util.*;
 
 public class Ackermann {
     public static void main(String[] args) {
