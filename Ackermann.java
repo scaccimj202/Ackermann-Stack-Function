@@ -34,13 +34,12 @@ public class Ackermann {
 
 
         PrintStream iterative = new PrintStream(makeFile("Iterative.txt"));
+        iterative.println("Time \t Data Set");
         PrintStream recursive = new PrintStream(makeFile("Recursive.txt"));
+        recursive.println("Time \t Data Set");
 
-        long m = Long.parseLong(args[0]);
-        long n = Long.parseLong(args[1]);
+        runExperiment(iterative, recursive);
 
-        timeAckRecur(m, n, recursive);
-        timeAckIter(m, n, iterative);
 
     }
     
@@ -95,17 +94,19 @@ public class Ackermann {
      * @param m m value
      * @param n n value
      */
-    public static void timeAckRecur(long m, long n, PrintStream name_){
+    public static void timeAckRecur(long m, long n, 
+        PrintStream name_, int setNum){
         long startTime = System.currentTimeMillis();
         long ack = ackermann(m, n);
         long endTime = System.currentTimeMillis();
+        long totalTime = (endTime = startTime);
         if(output == true){
             System.out.println("Recursive version of Ackermann ("
              + m + ", " + n +") results in: "+ ack + 
             ". Computed in " + (endTime - startTime) + " milliseconds.");
         }
         if(toFile == true){
-
+            name_.println(endTime + "\t" + setNum);
         }
     }
 
@@ -114,17 +115,20 @@ public class Ackermann {
      * @param m m value
      * @param n n value
      */
-    public static void timeAckIter(long m, long n, PrintStream name_){
+    public static void timeAckIter(long m, long n,
+     PrintStream name_, int setNum){
         long startTime = System.currentTimeMillis();
         long ack = computeAckermann(m, n);
         long endTime = System.currentTimeMillis();
+        long totalTime = (endTime = startTime);
+
         if(output == true){
             System.out.println("Iterative version of Ackermann ("
             + m + ", " + n +") results in: "+
             ack + ". Computed in " + (endTime - startTime) + " milliseconds.");
         }
         if(toFile == true){
-
+            name_.println(endTime + "\t" + setNum);
         }
     }
 
@@ -138,4 +142,14 @@ public class Ackermann {
         return new File(dir, fileName_);
     }
 
+    private static void runExperiment(PrintStream iterative,
+     PrintStream recursive){
+
+        timeAckRecur(m, n, recursive, setNum);
+        timeAckIter(m, n, iterative, setNum);
+    }
+
+    private static void makeData(){
+        
+    }
 }
