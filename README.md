@@ -15,7 +15,7 @@ The goal of Ackermann.java is to:
 
 Execution Instructions:
     The Ackermann.java file has been modified to fit the experiment. I have included a boolean toggle 'assignemntTest' 
-   wihtin the Ackermann.java file that is by default set to true. Whether or not this is toggled the original files for 
+   within the Ackermann.java file that is by default set to false. Whether or not this is toggled the original files for 
   each methods data WILL BE OVERWRITTEN. Copies of the data used for the purpose of the lab report are backed up in the
   'Experiment Data' folder already.
   
