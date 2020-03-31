@@ -23,6 +23,10 @@
 import LinkedStack.LStack;
 
 public class Ackermann {
+
+    private static boolean output = false;
+    private static boolean toFile = true;
+
     public static void main(String[] args) {
         long m = Long.parseLong(args[0]);
         long n = Long.parseLong(args[1]);
@@ -86,9 +90,14 @@ public class Ackermann {
         long startTime = System.currentTimeMillis();
         long ack = ackermann(m, n);
         long endTime = System.currentTimeMillis();
-        System.out.println("Recursive version of Ackermann ("
-         + m + ", " + n +") results in: "+ ack + 
-         ". Computed in " + (endTime - startTime) + " milliseconds.");
+        if(output == true){
+            System.out.println("Recursive version of Ackermann ("
+             + m + ", " + n +") results in: "+ ack + 
+            ". Computed in " + (endTime - startTime) + " milliseconds.");
+        }
+        if(toFile == true){
+            System.out.println("Write to file.");
+        }
     }
 
     /**
@@ -100,8 +109,13 @@ public class Ackermann {
         long startTime = System.currentTimeMillis();
         long ack = computeAckermann(m, n);
         long endTime = System.currentTimeMillis();
-        System.out.println("Iterative version of Ackermann ("
-         + m + ", " + n +") results in: "+
-        ack + ". Computed in " + (endTime - startTime) + " milliseconds.");
+        if(output == true){
+            System.out.println("Iterative version of Ackermann ("
+            + m + ", " + n +") results in: "+
+            ack + ". Computed in " + (endTime - startTime) + " milliseconds.");
+        }
+        if(toFile == true){
+            System.out.println("Write to file.");
+        }
     }
 }
