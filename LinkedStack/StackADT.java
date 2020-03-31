@@ -5,6 +5,7 @@
  *@assignment 4b
  *description: Stack interface adapted from Clifford Shaffers Data Structures and Algorithim Analysis, Chapter 4.2.1
  */
+package LinkedStack;
 
  public interface StackADT<E>{
 

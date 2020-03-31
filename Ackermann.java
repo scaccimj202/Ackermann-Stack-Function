@@ -20,17 +20,88 @@
  * @course CIS 303 Algorithm Analysis and Design
  * Assignment 4b
 */
+import LinkedStack.LStack;
 
 public class Ackermann {
     public static void main(String[] args) {
-        long M = Long.parseLong(args[0]);
-        long N = Long.parseLong(args[1]);
-        System.out.println(ackermann(M, N));
+        long m = Long.parseLong(args[0]);
+        long n = Long.parseLong(args[1]);
+        timeAckRecur(m, n);
+        timeAckIter(m, n);
+
     }
     
+    /**
+     * Method computes the Ackermann function recursively. 
+     * Source:https://introcs.cs.princeton.edu/java/53universality/Ackermann.java
+     * Be careful with large values!
+     * See: https://en.wikipedia.org/wiki/Ackermann_function.
+     * @param m long value of m
+     * @param n long value of n
+     * @return Ackermann(m, n)
+     */
     public static long ackermann(long m, long n) {
         if (m == 0) return n + 1;
         if (n == 0) return ackermann(m - 1, 1);
         return ackermann(m - 1, ackermann(m, n - 1));
+    }
+
+    /**
+     * @author Matthew Scaccia
+     * @since 3/31/2020
+     *Method computes the Ackermann function 
+     *iterativly with a stack simulating recursion.
+     *Be careful with large values!
+     *See: https://en.wikipedia.org/wiki/Ackermann_function.
+     * @param m long value of m
+     * @param n long value of n
+     * @return Ackermann(m, n)
+     */
+    public static long computeAckermann(long m, long n){
+        LStack<Tuple> stack = new LStack<Tuple>();
+        long result = 0;
+        stack.push(new Tuple(m,n,0));
+        while(stack.length() > 0){
+            Tuple temp = stack.pop();
+            if(temp.getOp() == 1)
+                stack.push(new Tuple(temp.getM(), result, 0));
+            if(temp.getM() == 0)
+                result = temp.getN() + 1;
+            else if(temp.getN() == 0)
+                stack.push(new Tuple(temp.getM()-1, 1, 0));
+            else{
+                stack.push(new Tuple(temp.getM()-1, 0, 1));
+                stack.push(new Tuple(temp.getM(), temp.getN()-1, 0));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Method times the recursive implementation of Ackermann 
+     * @param m m value
+     * @param n n value
+     */
+    public static void timeAckRecur(long m, long n){
+        long startTime = System.currentTimeMillis();
+        long ack = ackermann(m, n);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Recursive version of Ackermann ("
+         + m + ", " + n +") results in: "+ ack + 
+         ". Computed in " + (endTime - startTime) + " milliseconds.");
+    }
+
+    /**
+     * Method times the iterative implementation of Ackermann
+     * @param m m value
+     * @param n n value
+     */
+    public static void timeAckIter(long m, long n){
+        long startTime = System.currentTimeMillis();
+        long ack = computeAckermann(m, n);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Iterative version of Ackermann ("
+         + m + ", " + n +") results in: "+
+        ack + ". Computed in " + (endTime - startTime) + " milliseconds.");
     }
 }

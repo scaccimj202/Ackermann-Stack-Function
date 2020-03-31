@@ -5,6 +5,7 @@
  *@assignment 4b
  *description: LStack data structure adapted from Clifford Shaffers Data Structures and Algorithim Analysis, Chapter 4.2.2
  */
+package LinkedStack;
 
  public class LStack<E> implements StackADT<E>{
      private Node<E> top;

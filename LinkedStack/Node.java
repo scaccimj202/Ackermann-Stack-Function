@@ -6,7 +6,7 @@
  *description: Node object, modeled after Data Structures
  *and Algorithim Analysis by Clifford Shaffer Chapter 4.1.2
  */
-
+package LinkedStack;
 public class Node<E>{
     private E element;
     private Node<E> next;
