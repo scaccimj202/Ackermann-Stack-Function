@@ -1,11 +1,12 @@
 /**
+ *description: 3-Tuple class used to track Ackermann values
+ * m, n, and p or the trailing operation bit.
+ * See: https://en.wikipedia.org/wiki/Ackermann_function
+ * 
  *@author Matthew Scaccia
  *course CIS303
  *@since 3/29/2020
  *@assignment 4b
- *description: 3-Tuple class used to track Ackermann values
- * m, n, and p or the trailing operation bit.
- * See: https://en.wikipedia.org/wiki/Ackermann_function
  */
 
 public class Tuple{
