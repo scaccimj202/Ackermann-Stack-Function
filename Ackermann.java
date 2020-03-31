@@ -1,3 +1,4 @@
+
 /**
  *  Calculate the Ackermann function A(M, N) using a straightforward
  *  recursive program.
@@ -20,6 +21,8 @@
  * @course CIS 303 Algorithm Analysis and Design
  * Assignment 4b
 */
+import java.io.File;
+import java.io.PrintStream;
 import LinkedStack.LStack;
 
 public class Ackermann {
@@ -27,11 +30,17 @@ public class Ackermann {
     private static boolean output = false;
     private static boolean toFile = true;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
+
+        PrintStream iterative = new PrintStream(makeFile("Iterative.txt"));
+        PrintStream recursive = new PrintStream(makeFile("Recursive.txt"));
+
         long m = Long.parseLong(args[0]);
         long n = Long.parseLong(args[1]);
-        timeAckRecur(m, n);
-        timeAckIter(m, n);
+
+        timeAckRecur(m, n, recursive);
+        timeAckIter(m, n, iterative);
 
     }
     
@@ -86,7 +95,7 @@ public class Ackermann {
      * @param m m value
      * @param n n value
      */
-    public static void timeAckRecur(long m, long n){
+    public static void timeAckRecur(long m, long n, PrintStream name_){
         long startTime = System.currentTimeMillis();
         long ack = ackermann(m, n);
         long endTime = System.currentTimeMillis();
@@ -96,7 +105,7 @@ public class Ackermann {
             ". Computed in " + (endTime - startTime) + " milliseconds.");
         }
         if(toFile == true){
-            System.out.println("Write to file.");
+
         }
     }
 
@@ -105,7 +114,7 @@ public class Ackermann {
      * @param m m value
      * @param n n value
      */
-    public static void timeAckIter(long m, long n){
+    public static void timeAckIter(long m, long n, PrintStream name_){
         long startTime = System.currentTimeMillis();
         long ack = computeAckermann(m, n);
         long endTime = System.currentTimeMillis();
@@ -115,7 +124,18 @@ public class Ackermann {
             ack + ". Computed in " + (endTime - startTime) + " milliseconds.");
         }
         if(toFile == true){
-            System.out.println("Write to file.");
+
         }
     }
+
+    /**
+     * Method makes a new file in the 'Experiment Data' sub directory
+     * @param fileName_ name of the file
+     * @return file to be written to
+     */
+    private static File makeFile(String fileName_){
+        File dir = new File("/Experiment Data");
+        return new File(dir, fileName_);
+    }
+
 }
